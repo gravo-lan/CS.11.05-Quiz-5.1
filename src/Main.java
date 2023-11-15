@@ -8,8 +8,10 @@ public class Main {
      * zip(myArray1, myArray2) → {1,3,5,7,9,2,4,6,8,10,12,14,16}
      */
     public static int[] combine(int[] array1, int[] array2) {
-
-        return null;
+        int[] result = new int[array1.length+array2.length];
+        System.arraycopy(array1, 0, result, 0, array1.length);
+        System.arraycopy(array2, 0, result, array1.length, array1.length + array2.length - array1.length);
+        return result;
 
     }
 
@@ -21,9 +23,16 @@ public class Main {
      * zip(myArray1, myArray2) → {1,2,3,4,5,6,7,8,9,10}
      */
     public static int[] zip(int[] array1, int[] array2) {
-
-        return null;
-
+        int[] result = new int[array1.length+array2.length];
+        int count = 0;
+        for (int i = 0; i < array1.length+array2.length; i++) {
+            if (i%2==0) result[i] = array1[count];
+            else {
+                result[i] = array2[count];
+                count++;
+            }
+        }
+        return result;
     }
 
     /**
@@ -34,9 +43,11 @@ public class Main {
      * product(myArray1, myArray2) → {2,12,30,56,90}
      */
     public static int[] product(int[] array1, int[] array2) {
-
-        return null;
-
+        int[] result = new int[array1.length];
+        for (int i = 0; i < array1.length; i++) {
+            result[i] = array1[i] * array2[i];
+        }
+        return result;
     }
 
     /**
@@ -56,14 +67,25 @@ public class Main {
      * capitalCount(words) → {1, 2, 2, 0}
      */
     public static int[] capitalCount(String[] words) {
-
-        return null;
+        int[] result = new int[words.length];
+        for (int i = 0; i < words.length; i++) {
+            result[i] = countCapitalLetters(words[i]);
+        }
+        return result;
 
     }
 
     public static int countCapitalLetters(String word) {
-
-        return 0;
+        char[] letters = word.toCharArray();
+        int count = 0;
+        for (char c : letters) {
+            if (String.valueOf(c).toUpperCase().equals(String.valueOf(c))) {
+                if (c!=' '&&c!=','&&c!='.'&&c!='!'&&c!='?') {
+                    count++;
+                }
+            }
+        }
+        return count;
 
     }
 
